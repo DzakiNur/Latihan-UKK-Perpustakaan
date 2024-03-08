@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('penulis');
             $table->string('penerbit');
             $table->char('tahun_terbit');
+            $table->bigInteger('kategori_id')->nullable();
             $table->timestamps();
         });
     }
