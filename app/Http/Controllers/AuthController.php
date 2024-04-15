@@ -30,15 +30,17 @@ class AuthController extends Controller
         ]);
 
         $data['password'] = bcrypt($data['password']);
-        $data['role'] = 0;
+        $data['role'] = 'user';
         User::create($data);
 
-        if (Auth::attempt($data)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        } else {
-            return back()->with('error', 'Username / Password yang anda masukan salah');
-        }
+        return redirect('indexLogin');
+
+        // if (Auth::attempt(!$data)) {
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('/dashboard');
+        // } else {
+        //     return back()->with('error', 'Username / Password yang anda masukan salah');
+        // }
     }
 
     public function login(Request $request)
@@ -53,7 +55,7 @@ class AuthController extends Controller
             if(Auth::user() && Auth::user()->role == 'admin') {
                 return redirect()->intended('admin/dashboard');
             }
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('admin/dashboard');
         } else {
             return back()->with('error', 'Username / Password yang anda masukan salah');
         }

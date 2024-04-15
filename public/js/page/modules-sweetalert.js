@@ -41,16 +41,31 @@ $("#swal-6").click(function() {
 
 $("#swal-7").click(function() {
   swal({
-    title: 'What is your name?',
+    title: 'Add Category',
     content: {
     element: 'input',
     attributes: {
-      placeholder: 'Type your name',
+      placeholder: 'Type the category',
       type: 'text',
     },
     },
   }).then((data) => {
-    swal('Hello, ' + data + '!');
+    $.ajax({
+      type: "POST",
+      url: '/admin/category/store',
+      data: {
+        nama_kategori: data
+      },
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function() {
+        swal('Success!');
+      },
+      error: function() {
+        swal('Failed!');
+      }
+    })
   });
 });
 

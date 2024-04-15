@@ -22,29 +22,15 @@
         href="{{ asset('css/style.css') }}">
     <link rel="stylesheet"
         href="{{ asset('css/components.css') }}">
-    <!-- Start GA -->
-    <script async
-        src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- END GA -->
 </head>
 
 <body>
     <div id="app">
         <section class="section">
-            <div class="container mt-5">
+            <div class="container mt-3">
                 <div class="row">
                     <div
-                        class="{{ Request::is('auth-register') ? 'col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2' : 'col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4' }}">
+                        class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
                         <!-- Footer -->
                         <div class="login-brand">
                             <img src="{{ asset('img/stisla-fill.svg') }}"
@@ -54,28 +40,34 @@
                         </div>
 
                         <!-- Content -->
-                        <div class="card card-primary">
+                        <div class="card card-green">
                             <div class="card-header">
                                 <h4>Register</h4>
                             </div>
                     
                             <div class="card-body">
-                                <form method="POST">
+                                <form action="{{route('register')}}" method="POST">
+                                    @csrf
                                     <div class="row">
-                                        <div class="form-group col-12">
+                                        <div class="form-group col-6">
+                                            <label for="name">Name</label>
+                                            <input id="name" type="text" class="form-control" name="name" autofocus>
+                                        </div>
+
+                                        <div class="form-group col-6">
                                             <label for="username">Username</label>
-                                            <input id="username" type="text" class="form-control" name="username" autofocus>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email">
-                                        <div class="invalid-feedback">
+                                            <input id="username" type="text" class="form-control" name="username">
                                         </div>
                                     </div>
                     
                                     <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="email">Email</label>
+                                            <input id="email" type="email" class="form-control" name="email">
+                                            <div class="invalid-feedback">
+                                            </div>
+                                        </div>
+
                                         <div class="form-group col-6">
                                             <label for="password" class="d-block">Password</label>
                                             <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator"
@@ -85,54 +77,26 @@
                                                 <div class="label"></div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-6">
-                                            <label for="password2" class="d-block">Password Confirmation</label>
-                                            <input id="password2" type="password" class="form-control" name="password-confirm">
-                                        </div>
                                     </div>
-                    
-                                    <div class="form-divider">
-                                        Your Home
-                                    </div>
+
                                     <div class="row">
-                                        <div class="form-group col-6">
-                                            <label>Country</label>
-                                            <select class="form-control selectric">
-                                                <option>Indonesia</option>
-                                                <option>Palestine</option>
-                                                <option>Syria</option>
-                                                <option>Malaysia</option>
-                                                <option>Thailand</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label>Province</label>
-                                            <select class="form-control selectric">
-                                                <option>West Java</option>
-                                                <option>East Java</option>
-                                            </select>
+                                        <div class="form-group col-12">
+                                            <label for="address">Address</label>
+                                            <input id="address" type="text" class="form-control" name="alamat">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                            <label>City</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label>Postal Code</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
+
+                                    <input id="role" type="hidden" name="role" value="user">
                     
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                        <button type="submit" class="btn btn-green btn-lg btn-block">
                                             Register
                                         </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="text-muted mt-5 text-center">
+                        <div class="text-muted mt-5 mb-5 text-center">
                             Already have an account? <a href="{{ route('indexLogin') }}">Login Now</a>
                         </div>                        
                     </div>

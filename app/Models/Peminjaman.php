@@ -13,8 +13,10 @@ class Peminjaman extends Model
         'user_id',
         'buku_id',
         'tanggal_pinjam',
-        'tanggal_pengembalian',
         'status',
+    ];
+    protected $nullable = [
+        'tanggal_pengembalian',
     ];
 
     public function user() {

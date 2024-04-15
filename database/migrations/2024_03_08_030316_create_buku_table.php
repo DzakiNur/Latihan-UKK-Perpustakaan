@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('judul');
             $table->string('penulis');
             $table->string('penerbit');
+            $table->string('gambar');
             $table->char('tahun_terbit');
+            $table->text('sinopsis');
             $table->bigInteger('kategori_id')->nullable();
             $table->timestamps();
         });

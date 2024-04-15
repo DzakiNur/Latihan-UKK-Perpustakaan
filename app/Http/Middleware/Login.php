@@ -20,6 +20,6 @@ class Login
         if (Auth::check()) {
             return $next($request);
           }
-          return redirect('/login')->with('error', 'Silahkan Login Terlebih Dahulu');
+          return redirect('/login')->with('error', 'Silahkan Login Terlebih Dahulu!');
     }
 }

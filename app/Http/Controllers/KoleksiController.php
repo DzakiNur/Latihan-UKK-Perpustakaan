@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Buku;
 use App\Models\Koleksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class KoleksiController extends Controller
 {
@@ -18,12 +20,25 @@ class KoleksiController extends Controller
 
     public function store(Request $request)
     {
-        $koleksi = Koleksi::create($request->all());
+        $request->validate([
+            'user_id',
+            'buku_id',
+        ]);
+
+        $check = Koleksi::where('user_id', '=', Auth::user()->id)->where('buku_id', '=', $request->buku_id)->exists();
+        if($check) {
+            return back()->with('error', 'Buku sudah ada!');
+        }
+
+        $koleksi = Koleksi::create([
+            'user_id' => Auth::user()->id,
+            'buku_id' => $request->buku_id
+        ]);
 
         if(!$koleksi) {
-            return back()->with('error', 'Gagal membuat koleksi!');
+            return back()->with('error', 'Gagal menambahkan ke koleksi!');
         }
-        return redirect('admin.koleksi.index')->with('success', 'Koleksi berhasil dibuat');
+        return redirect()->route('admin.book')->with('success', 'Berhasil ditambahkan ke koleksi');
     }
 
     public function edit($id)

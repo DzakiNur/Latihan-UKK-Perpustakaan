@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class KategoriController extends Controller
 {
@@ -14,32 +16,39 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
-        $kategori = Kategori::create($request->all());
+        $request->validate([
+            'nama_kategori' => 'required'
+        ]);
+
+        $kategori = Kategori::create([
+            'nama_kategori' => $request->nama_kategori
+        ]);
 
         if(!$kategori) {
             return back()->with('error', 'Gagal membuat kategori!');
         }
-        return redirect('admin.kategori.index')->with('success', 'Kategori berhasil dibuat');
+        return redirect()->route('admin.category')->with('success', 'Kategori berhasil dibuat');
     }
 
     public function edit($id)
     {
-        $kategori = Kategori::where('id', $id);
+        // $category = Kategori::get();
+        // $kategori = Kategori::where('id', $id)->first();
 
-        if(!$kategori) {
-            return back()->with('error', 'Kategori tidak ditemukan!');
-        }
-        return view('admin.kategori.edit', compact('kategori'));
+        // return redirect()->route('admin.category.edit', ['id' => $id])->with(compact('category', 'kategori'));
     }
 
     public function update(Request $request, $id)
     {
-        $kategori = Kategori::where('id', $id)->update($request->all());
+        $validate = $request->validate([
+            'nama_kategori' => 'required',
+        ]);
+        $kategori = Kategori::where('id', $id)->update($validate);
 
         if(!$kategori) {
             return back()->with('error', 'Gagal mengubah data!');
         }
-        return view('admin.kategori.index')->with('success', 'Kategori berhasil diubah');
+        return redirect()->route('admin.category')->with('success', 'Kategori berhasil diubah');
     }
 
     public function delete($id)

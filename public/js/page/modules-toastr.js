@@ -35,7 +35,7 @@ $("#toastr-4").click(function() {
 $("#toastr-5").click(function() {
   iziToast.show({
     title: 'Hello, world!',
-    message: 'This awesome plugin is made by iziToast',
+    message: "{{ Session::get('success') }}",
     position: 'bottomRight' 
   });
 });

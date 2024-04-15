@@ -4,6 +4,7 @@
 
 @push('style')
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('library/izitoast/dist/css/iziToast.min.css') }}">
 @endpush
 
 @section('main')
@@ -18,264 +19,172 @@
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Books</h2>
-                <p class="section-lead">This article component is based on card and flexbox.</p>
-
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img08.jpg') }}">
-                                </div>
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-cta">
-                                    <a href="#"
-                                        class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </article>
+                    <h2 class="section-title col-6">Books</h2>
+                    @if(Auth::user()->role == 'admin')
+                    <div class="button card-header-action dropdown col-6">
+                        <a href="#"
+                            data-toggle="dropdown"
+                            class="btn btn-primary mr-4 dropdown-toggle">Action</a>
+                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                            <li class="dropdown-title">Select Action</li>
+                            <li>
+                                <a href="{{route('admin.add-book')}}" class="dropdown-item">Add Book</a>
+                            </li>
+                            <li><a href="#"
+                                    class="dropdown-item">Download PDF</a></li>
+                        </ul>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img04.jpg') }}">
-                                </div>
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-cta">
-                                    <a href="#"
-                                        class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img09.jpg') }}">
-                                </div>
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-cta">
-                                    <a href="#"
-                                        class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img12.jpg') }}">
-                                </div>
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-cta">
-                                    <a href="#"
-                                        class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                    @endif
                 </div>
 
-                <h2 class="section-title">Article Style B</h2>
-                <div class="row">
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article article-style-b">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img13.jpg') }}">
+                @if(Auth::user()->role == 'admin')
+                    @if($book->count() == 0)
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 ">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Empty Data</h4>
                                 </div>
-                                <div class="article-badge">
-                                    <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i> Trending</div>
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-cta">
-                                    <a href="#">Read More <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article article-style-b">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img15.jpg') }}">
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-cta">
-                                    <a href="#">Read More <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article article-style-b">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img07.jpg') }}">
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-cta">
-                                    <a href="#">Read More <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article article-style-b">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img02.jpg') }}">
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-cta">
-                                    <a href="#">Read More <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <h2 class="section-title">Article Style C</h2>
-                <div class="row">
-                    <div class="col-12 col-md-4 col-lg-4">
-                        <article class="article article-style-c">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img13.jpg') }}">
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-category"><a href="#">News</a>
-                                    <div class="bullet"></div> <a href="#">5 Days</a>
-                                </div>
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-user">
-                                    <img alt="image"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}">
-                                    <div class="article-user-details">
-                                        <div class="user-detail-name">
-                                            <a href="#">Hasan Basri</a>
+                                <div class="card-body">
+                                    <div class="empty-state"
+                                        data-height="400">
+                                        <div class="empty-state-icon">
+                                            <i class="fas fa-question"></i>
                                         </div>
-                                        <div class="text-job">Web Developer</div>
+                                        <h2>We couldn't find any data</h2>
+                                        <p class="lead">
+                                            Sorry we can't find any data, to get rid of this message, make at least 1 entry.
+                                        </p>
+                                        <a href="#"
+                                            class="btn btn-primary mt-4">Create new One</a>
+                                        <a href="#"
+                                            class="bb mt-4">Need Help?</a>
                                     </div>
                                 </div>
                             </div>
-                        </article>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-4 col-lg-4">
-                        <article class="article article-style-c">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img14.jpg') }}">
+                    @else
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Books Table</h4>
+                                    <div class="card-header-form">
+                                        <form>
+                                            <div class="input-group">
+                                                <input type="text"
+                                                    class="form-control search"
+                                                    placeholder="Search">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-green"><i class="fas fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-category"><a href="#">News</a>
-                                    <div class="bullet"></div> <a href="#">5 Days</a>
-                                </div>
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-user">
-                                    <img alt="image"
-                                        src="{{ asset('img/avatar/avatar-3.png') }}">
-                                    <div class="article-user-details">
-                                        <div class="user-detail-name">
-                                            <a href="#">Rizal Fakhri</a>
-                                        </div>
-                                        <div class="text-job">UX Designer</div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table-striped table">
+                                                <tr>
+                                                    <th>Tittle</th>
+                                                    <th>Writter</th>
+                                                    <th>Publisher</th>
+                                                    <th>Year Publisher</th>
+                                                </tr>
+                                            @foreach($book as $books)
+                                                <tr>
+                                                    <td>{{$books->judul}}</td>
+                                                    <td>{{$books->penulis}}</td>
+                                                    <td>{{$books->penerbit}}</td>
+                                                    <td>{{$books->tahun_terbit}}</td>
+                                                    <td class="action">
+                                                        <a href="" data-toggle="edit" data-target="#exampleModal" class="btn btn-primary mr-2">Edit</a>
+                                                        <form action="">
+                                                            @csrf
+                                                            <button class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </article>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-4 col-lg-4">
-                        <article class="article article-style-c">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/news/img01.jpg') }}">
+                    @endif
+                
+                @elseif(Auth::user()->role == 'user')
+                    @if($book->count() == 0)
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-6 ">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Empty Data</h4>
                                 </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-category"><a href="#">News</a>
-                                    <div class="bullet"></div> <a href="#">5 Days</a>
-                                </div>
-                                <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                                </div>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. </p>
-                                <div class="article-user">
-                                    <img alt="image"
-                                        src="{{ asset('img/avatar/avatar-2.png') }}">
-                                    <div class="article-user-details">
-                                        <div class="user-detail-name">
-                                            <a href="#">Irwansyah Saputra</a>
+                                <div class="card-body">
+                                    <div class="empty-state"
+                                        data-height="400">
+                                        <div class="empty-state-icon">
+                                            <i class="fas fa-question"></i>
                                         </div>
-                                        <div class="text-job">Mobile Developer</div>
+                                        <h2>We couldn't find any data</h2>
+                                        <p class="lead">
+                                            Sorry we can't find any data, to get rid of this message, make at least 1 entry.
+                                        </p>
+                                        <a href="#"
+                                            class="btn btn-primary mt-4">Create new One</a>
+                                        <a href="#"
+                                            class="bb mt-4">Need Help?</a>
                                     </div>
                                 </div>
                             </div>
-                        </article>
+                        </div>
                     </div>
-                </div>
+                    @else
+                    <div class="row">
+                        @foreach($book as $books)
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                            <article class="article">
+                                <div class="article-header">
+                                    <div class="article-image"
+                                        data-background="{{ asset('/storage/images/'.$books->gambar) }}">
+                                    </div>
+                                    <div class="article-title">
+                                        <h2><a href="#">{{$books->judul}}</a></h2>
+                                        <h6>{{$books->kategori->nama_kategori}}</h2>
+                                    </div>
+                                </div>
+                                <div class="article-details">
+                                    <p>{!! Str::limit($books->sinopsis, 150, ' ...') !!} <a href="">read more</a></p>
+                                    <div class="article-cta">
+                                        <div class="row">
+                                            <form action="{{route('admin.collection.store')}}" method="post" class="col-6">
+                                                @csrf
+                                                <input type="hidden" name="buku_id" value="{{$books->id}}">
+                                                <button type="submit" class="btn btn-primary">
+                                                    +Collection
+                                                </button>
+                                            </form>
+                                            <form action="{{route('admin.borrow.store')}}" method="post" class="col-6">
+                                                @csrf
+                                                <input type="hidden" name="buku_id" value="{{$books->id}}">
+                                                <button type="submit" class="btn btn-green" id="toastr-5">
+                                                    Borrow
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
+                
+                @endif
             </div>
         </section>
     </div>
@@ -283,6 +192,32 @@
 
 @push('scripts')
     <!-- JS Libraies -->
+    <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
+    @if(Session::has('success'))
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            iziToast.success({
+                title: 'Successed!',
+                message: "{{Session::get('success')}}",
+                position: 'bottomRight' 
+            });
+        });
+    </script>
+
+    @endif
+    @if(Session::has('error'))
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            iziToast.error({
+                title: 'Error!',
+                message: "{{Session::get('error')}}",
+                position: 'bottomRight' 
+            });
+        });
+    </script>
+    @endif
 @endpush

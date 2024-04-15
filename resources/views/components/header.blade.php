@@ -1,4 +1,4 @@
-<div class="navbar-bg"></div>
+<div class="navbar-bg-green"></div>
 <nav class="navbar navbar-expand-lg main-navbar">
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
@@ -37,8 +37,7 @@
                 <div class="dropdown-divider"></div>
                 <form action="{{route('logout')}}" method="post">
                     @csrf
-                    <button
-                        class="dropdown-item has-icon text-danger">
+                    <button class="dropdown-item has-icon text-danger">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </button>
                 </form>

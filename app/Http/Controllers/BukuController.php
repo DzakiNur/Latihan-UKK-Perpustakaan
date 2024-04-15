@@ -5,23 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class BukuController extends Controller
 {
     public function create()
     {
-        $kategori = Kategori::get();
-        return view('admin.buku.create', compact('kategori'));
+        $category = Kategori::get();
+        return view('admin.buku.add', compact('category'));
     }
 
     public function store(Request $request)
     {
-        $buku = Buku::create($request->all());
-
+        $data = $request->all();
+        $fileName = time().'__'.$request->file('gambar')->getClientOriginalName();
+        $data['gambar'] = $fileName;
+        
+        $buku = Buku::create($data);
+        $path = $request->file('gambar')->storeAs('images', $fileName, 'public');
+        
         if(!$buku) {
             return back()->with('error', 'Gagal membuat buku!');
         }
-        return redirect('admin.buku')->with('success', 'Buku berhasil dibuat');
+        return redirect()->route('admin.book')->with('success', 'Buku berhasil dibuat');
     }
 
     public function edit($id)
