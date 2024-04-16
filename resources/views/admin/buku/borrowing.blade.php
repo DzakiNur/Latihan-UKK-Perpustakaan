@@ -39,6 +39,33 @@
                     @endif
                 </div>
                 
+                @if($borrowing->count() == 0)
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 ">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Empty Data</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="empty-state"
+                                    data-height="400">
+                                    <div class="empty-state-icon">
+                                        <i class="fas fa-question"></i>
+                                    </div>
+                                    <h2>We couldn't find any data</h2>
+                                    <p class="lead">
+                                        Sorry we can't find any data, to get rid of this message, make at least 1 entry.
+                                    </p>
+                                    <a href="#"
+                                        class="btn btn-primary mt-4">Create new One</a>
+                                    <a href="#"
+                                        class="bb mt-4">Need Help?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @else
                 <div class="row">
                     @foreach($borrowing as $borrow)
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3">
@@ -72,6 +99,7 @@
                     </div>
                     @endforeach
                 </div>
+                @endif
             </div>
         </section>
     </div>

@@ -33,7 +33,7 @@ class AuthController extends Controller
         $data['role'] = 'user';
         User::create($data);
 
-        return redirect('indexLogin');
+        return redirect('login');
 
         // if (Auth::attempt(!$data)) {
         //     $request->session()->regenerate();

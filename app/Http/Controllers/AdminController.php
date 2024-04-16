@@ -57,4 +57,72 @@ class AdminController extends Controller
     {
         return view('admin.user.add');
     }
+
+    public function storeUser(Request $request)
+    {
+        $data = $request-> validate([
+            'username' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'alamat' => 'required',
+            'role' => 'required'
+        ]);
+
+        $data['password'] = bcrypt($data['password']);
+        $result = User::create($data);
+
+        if(!$result) {
+            return back()->with('error', 'Gagal membuat akun!');
+        }
+        return redirect()->route('admin.user')->with('success', 'Akun berhasil dibuat!');
+    }
+
+    public function editUser($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if(!$user) {
+            return back()->with('error', 'Akun tidak dapat ditemukan!');
+        }
+        return view('admin.user.edit', compact('user'));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $data = $request-> validate([
+            'username' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'alamat' => 'required',
+            'role' => 'required'
+        ]);
+
+        $data['password'] = bcrypt($data['password']);
+        $user = User::where('id', $id)->first();
+        
+        if(!$user) {
+            return back()->with('error', 'Akun tidak dapat ditemukan!');
+        }
+
+        $result = $user->update($data);
+
+        if(!$result) {
+            return back()->with('error', 'Gagal mengubah akun!');
+        }
+        return redirect()->route('admin.user')->with('success', 'Akun berhasil diubah!');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if(!$user) {
+            return back()->with('error', 'Akun tidak dapat ditemukan!');
+        }
+
+        $user->delete();
+        return redirect()->route('admin.user')->with('success', 'Akun berhasil dihapus!');
+    }
 }

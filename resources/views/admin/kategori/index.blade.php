@@ -70,7 +70,7 @@
                                                 <td>{{$categories->created_at}}</td>
                                                 <td class="action">
                                                     <button data-toggle="modal" data-target="#modalEdit-{{$categories->id}}" class="btn btn-primary mr-2">Edit</button>
-                                                    <form action="">
+                                                    <form action="{{route('admin.category.delete', $categories->id)}}" method="post">
                                                         @csrf
                                                         <button class="btn btn-danger">Delete</button>
                                                     </form>

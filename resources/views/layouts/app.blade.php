@@ -15,6 +15,8 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+    href="{{ asset('library/ionicons201/css/ionicons.min.css') }}">
 
     @stack('style')
 
@@ -70,6 +72,7 @@
     <!-- Template JS File -->
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/page/modules-ion-icons.js') }}"></script>
 </body>
 
 </html>

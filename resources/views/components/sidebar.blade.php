@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{route('admin.dashboard')}}">Perpustakaan</a>
+            <a href="{{route('admin.dashboard')}}" style="color:#03C988">Perpustakaan</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{route('admin.dashboard')}}">PS</a>
@@ -26,13 +26,13 @@
             @endif
             @if(Auth::user()->role == 'user')
             <li class="nav-item {{ Route::is('admin.collection') ? 'active' : '' }}">
-                <a href="{{route('admin.collection')}}" class="nav-link"><i class="fas fa-tag"></i><span>Collections</span></a>
-            </li>
-            <li class="menu-header">Borrowing</li>
-            <li class="nav-item {{ Route::is('admin.borrow') ? 'active' : '' }}">
-                <a href="{{route('admin.borrow')}}" class="nav-link"><i class="far fa-user"></i><span>Borrow</span></a>
+                <a href="{{route('admin.collection')}}" class="nav-link"><i class="ion-ios-bookmarks"></i><span>Collections</span></a>
             </li>
             @endif
+            <li class="menu-header">Borrowing</li>
+            <li class="nav-item {{ Route::is('admin.borrow') ? 'active' : '' }}">
+                <a href="{{route('admin.borrow')}}" class="nav-link"><i class="ion-ios-cart"></i><span>Borrow</span></a>
+            </li>
         </ul>
 
     </aside>

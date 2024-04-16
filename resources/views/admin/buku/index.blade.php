@@ -100,8 +100,8 @@
                                                     <td>{{$books->penerbit}}</td>
                                                     <td>{{$books->tahun_terbit}}</td>
                                                     <td class="action">
-                                                        <a href="" data-toggle="edit" data-target="#exampleModal" class="btn btn-primary mr-2">Edit</a>
-                                                        <form action="">
+                                                        <a href="{{route('admin.book.edit', $books->id)}}" class="btn btn-primary mr-2">Edit</a>
+                                                        <form action="{{route('admin.book.delete', $books->id)}}" method="post">
                                                             @csrf
                                                             <button class="btn btn-danger">Delete</button>
                                                         </form>

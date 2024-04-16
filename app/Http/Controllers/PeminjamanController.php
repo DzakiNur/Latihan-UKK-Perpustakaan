@@ -29,7 +29,6 @@ class PeminjamanController extends Controller
             'tanggal_pengembalian' => null,
             'status' => false,
         ]);
-        dd($peminjaman);
         
         if(!$peminjaman) {
             return back()->with('error', 'Gagal meminjam buku!');

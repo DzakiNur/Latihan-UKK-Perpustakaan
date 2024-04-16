@@ -53,11 +53,12 @@ class KategoriController extends Controller
 
     public function delete($id)
     {
-        $kategori = Kategori::where('id', $id)->delete();
-
+        $kategori = Kategori::where('id', $id)->first();
+        
         if(!$kategori) {
-            return back()->with('error', 'Gagal menghapus kategori!');
+            return back()->with('error', 'Kategori tidak dapat ditemukan!');
         }
-        return back()->with('success', 'Kategori berhasil dihapus');
+        $kategori->delete();
+        return redirect()->route('admin.category')->with('success', 'Kategori berhasil dihapus');
     }
 }

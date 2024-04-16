@@ -4,6 +4,7 @@
 
 @push('style')
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('library/izitoast/dist/css/iziToast.min.css') }}">        
 @endpush
 
 @section('main')
@@ -115,8 +116,8 @@
                                                         @endif
                                                     </td>
                                                     <td class="action">
-                                                        <a href="" data-toggle="edit" data-target="#exampleModal" class="btn btn-primary mr-2">Edit</a>
-                                                        <form action="">
+                                                        <a href="{{route('admin.user.edit', $users->id)}}" class="btn btn-primary mr-2">Edit</a>
+                                                        <form action="{{route('admin.user.delete', $users->id)}}" method="post">
                                                             @csrf
                                                             <button class="btn btn-danger">Delete</button>
                                                         </form>
@@ -138,6 +139,7 @@
 
 @push('scripts')
     <!-- JS Libraies -->
+    <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     @if(Session::has('success'))
@@ -147,6 +149,19 @@
             iziToast.success({
                 title: 'Successed!',
                 message: "{{Session::get('success')}}",
+                position: 'bottomRight' 
+            });
+        });
+    </script>
+
+    @endif
+    @if(Session::has('error'))
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            iziToast.error({
+                title: 'Error!',
+                message: "{{Session::get('error')}}",
                 position: 'bottomRight' 
             });
         });
